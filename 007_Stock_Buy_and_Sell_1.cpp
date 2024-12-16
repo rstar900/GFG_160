@@ -6,6 +6,7 @@ using namespace std;
 
 // } Driver Code Ends
 
+
 class Solution {
   public:
     int maximumProfit(vector<int> &prices) {
@@ -25,14 +26,14 @@ class Solution {
         for (int i{}; i < prices.size(); ++i) {
             // If we found a local minima, we need to look for local maxima next
             // only if the stock is not already bought
-            if (prices[i] < prices[i+1] && !bought) {
+            if (i != prices.size() - 1 && prices[i] < prices[i+1] && !bought) {
                 local_min = prices[i];
                 bought = true;
             }
             
             // If we have already bought the stock and we found the local maxima
             // we sell and hence calculate the difference and add it to max profit
-            if (prices[i] > prices[i+1] && bought) {
+            if (i != prices.size() - 1 && prices[i] > prices[i+1] && bought) {
                 local_max = prices[i];
                 max_profit += (local_max - local_min);
                 bought = false;
